@@ -3,6 +3,7 @@ import { StyleSheet, Dimensions, View, Text, ScrollView, TextInput, Image, SafeA
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../../components/HeaderButton';
 import CarouselSample from '../../components/CarouselSample';
+import { useSelector, useDispatch } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import auth from '../../store/reducers/auth';
 import Grid from '../../components/Grids';
@@ -15,6 +16,10 @@ const { height } = Dimensions.get('screen');
 
 const HomeScreen = navData => {
   
+  const userProfile = useSelector(state => state.profile);
+  const dispatch = useDispatch();
+
+  console.log(userProfile);
 
   return(
     <SafeAreaView style={{flex: 1 , backgroundColor : 'transparent'}} forceInset={{ top: 'always', horizontal: 'never' }}>
@@ -74,7 +79,7 @@ const HomeScreen = navData => {
           size={30}
           color={'orange'}
       />
-      <Text style={{textAlign:'center'}}>Vendors</Text>
+      <Text style={{textAlign:'center', fontFamily:'montserrat-regular'}}>Vendors</Text>
          </View>
       <View style={{alignItems:'center',  paddingRight:30, elevation:2}}>
        <Ionicons
@@ -84,7 +89,7 @@ const HomeScreen = navData => {
           style={{elevation:9}}
 
       />
-      <Text style={{textAlign:'center'}}>Game</Text>
+      <Text style={{textAlign:'center', fontFamily:'montserrat-regular'}}>Game</Text>
       </View>
       <View style={{alignItems:'center',  paddingRight:30}}>
        <Ionicons
@@ -93,7 +98,7 @@ const HomeScreen = navData => {
           color={'orange'}
 
       />
-      <Text style={{textAlign:'center'}}>Share</Text>
+      <Text style={{textAlign:'center', fontFamily:'montserrat-regular'}}>Share</Text>
       </View>
       </View>
      

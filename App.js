@@ -12,15 +12,24 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 // import cartReducer from './store/reducers/cart';
 // import ordersReducer from './store/reducers/orders';
 import authReducer from './store/reducers/auth';
+import questionReducer from './store/reducers/game';
+import gameReducer from './store/reducers/game';
 import NavigationContainer from './navigation/NavigationContainer';
 
 
 
 const rootReducer = combineReducers({
-  auth: authReducer
+  auth: authReducer,
+  game: gameReducer,
+  question: questionReducer
 });
 
-const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+// export default createStore(reducers, composeEnhancers(applyMiddleware(...middleware)));
+
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(ReduxThunk)));
 
 const fetchFonts = () => {
   return Font.loadAsync({

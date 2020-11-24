@@ -9,12 +9,16 @@ import {
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { Platform, SafeAreaView, Button, View, Image, ImageBackground, Dimensions, ScrollView, Text} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
 
 import HomeScreen from '../screens/shop/HomeScreen';
 import ProductDetailScreen from '../screens/shop/ProductDetailScreen';
 import CartScreen from '../screens/shop/CartScreen';
 import OrdersScreen from '../screens/shop/OrdersScreen';
+import CategoriesScreen from '../screens/shop/CategoriesScreen';
+import QuestionScreen from '../screens/shop/Question';
+import ScoreScreen from '../screens/shop/Score';
 import UserProductsScreen from '../screens/user/UserProductsScreen';
 import EditProductScreen from '../screens/user/EditProductScreen';
 import AuthScreen from '../screens/user/AuthScreen';
@@ -49,13 +53,17 @@ const defaultNavOptions = {
   // headerTintColor: Platform.OS === 'android' ? 'black' : Colors.primary
 };
 
+// const user = () =>{
+
+// }
+
 
 
 
 const ProductsNavigator = createStackNavigator(
   {
     Home: HomeScreen,
-    // ProductDetail: ProductDetailScreen,
+    // Question: QuestionScreen,
     // Cart: CartScreen
   },
   {
@@ -83,9 +91,32 @@ const ProductsNavigator = createStackNavigator(
 
 
 
-const OrdersNavigator = createStackNavigator(
+const CategoriesNavigator = createStackNavigator(
   {
-    Orders: OrdersScreen
+    Categories: CategoriesScreen,
+    Question: QuestionScreen,
+    Score: ScoreScreen,
+
+  },
+  {
+    navigationOptions: {
+      tabBarVisible: false
+      // drawerIcon: drawerConfig => (
+      //   <Ionicons
+      //     name={Platform.OS === 'android' ? 'md-list' : 'ios-list'}
+      //     size={23}
+      //     color={drawerConfig.tintColor}
+      //   />
+      // )
+    },
+    defaultNavigationOptions: defaultNavOptions
+  }
+);
+
+
+const QuestionNavigator = createStackNavigator(
+  {
+    Question: QuestionScreen
   },
   {
     navigationOptions: {
@@ -114,7 +145,7 @@ const tabScreenConfig = {
     }
   },
   Favorites: {
-    screen: OrdersNavigator,
+    screen: CategoriesNavigator,
     navigationOptions: {
       tabBarIcon: tabInfo => {
         return <Ionicons name="ios-star" size={25} color={tabInfo.tintColor} />;
@@ -140,12 +171,7 @@ const HomeTabNavigator =
           activeTintColor: Colors.accentColor
         }
       });
-      // vendor
-      // game
-      // profile 
-      // settings
-      // feedback 
-      // share App 
+      
 
       const VendorNavigator = createStackNavigator(
         {
@@ -272,17 +298,30 @@ const FeedbackNavigator = createStackNavigator(
   }
 );
 
-const CustomDrawerContentComponent = (props) => (
+// const userProfile = useSelector(state => state.profile);
+// const dispatch = useDispatch();
+
+// console.log(userProfile);
+
+const CustomDrawerContentComponent = (props) => {
+
+  const userProfile = useSelector(state => state.auth);
+  console.log('userProfile');
+  console.log(userProfile);
+  // const dispatch = useDispatch();
+
+  return(
+ 
   <ScrollView style={{marginTop:20, marginBottom:20, paddingBottom:100, fontFamily:'montserrat-regular'}}>
     <ImageBackground style={{  backgroundColor:'black'}} source={require('../images/tst1.jpg')} imageStyle={{opacity: 0.1}} >
     {/* <View style={{,}}> */}
 
     <SafeAreaView style={{flex: 1 , backgroundColor : 'transparent'}} forceInset={{ top: 'always', horizontal: 'never' }}>
-     <Image style={{width:100, height:100, borderRadius:50, marginLeft:'auto', marginRight:'auto', marginTop:15}}source={require('../images/tst1.jpg')}/>
+     <Image style={{width:100, height:100, borderRadius:50, marginLeft:'auto', marginRight:'auto', marginTop:15}} source={{uri: userProfile.profile_pics}}/>
       <View style={{marginLeft:'auto', marginRight:'auto', margin:5, }}>
-      <Text style={{color:'white', textAlign:'center', fontSize:18 }}>Tolu Johnson</Text>
-      <Text style={{color:'white', textAlign:'center', fontSize:15 }}>teejohn247@gmail.com</Text>
-      <Text style={{color:'white', textAlign:'center', fontSize:15, marginBottom:10}}>08161582774</Text>
+      <Text style={{color:'white', textAlign:'center', fontSize:18, fontFamily:'montserrat-regular' }}>{userProfile.firstname} {userProfile.lastname}</Text>
+      <Text style={{color:'white', textAlign:'center', fontSize:15, fontFamily:'montserrat-regular' }}>{userProfile.email}</Text>
+      <Text style={{color:'white', textAlign:'center', fontSize:15, marginBottom:10, fontFamily:'montserrat-regular'}}>{userProfile.mobiles}</Text>
 
       </View>
     </SafeAreaView>
@@ -291,10 +330,20 @@ const CustomDrawerContentComponent = (props) => (
     <DrawerItems {...props} />
 
   </ScrollView>
+  )
 
     // {/* <Image style={{flex: 1 , position : 'absolute' , top : 0 , height :Dimensions.get('window').height  , width : Dimensions.get('window').width}}source={require('../images/tst1.jpg')}/> */}
     
-);
+};
+
+{/* <Button
+title="Logout"
+color={Colors.primary}
+onPress={() => {
+  dispatch(authActions.logout());
+  // props.navigation.navigate('Auth');
+}}
+/> */}
 
 const ShopNavigator = createDrawerNavigator(
   {
@@ -359,14 +408,14 @@ const ShopNavigator = createDrawerNavigator(
     //     <View style={{ flex: 1, paddingTop: 20, padding:10 }}>
     //       <SafeAreaView forceInset={{ top: 'always', horizontal: 'never',  padding:10 }}>
     //         <DrawerItems {...props} />
-    //         <Button
-    //           title="Logout"
-    //           color={Colors.primary}
-    //           onPress={() => {
-    //             dispatch(authActions.logout());
-    //             // props.navigation.navigate('Auth');
-    //           }}
-    //         />
+            // <Button
+            //   title="Logout"
+            //   color={Colors.primary}
+            //   onPress={() => {
+            //     dispatch(authActions.logout());
+            //     // props.navigation.navigate('Auth');
+            //   }}
+            // />
     //       </SafeAreaView>
     //     </View>
     //   );

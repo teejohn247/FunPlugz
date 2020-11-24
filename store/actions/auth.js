@@ -60,6 +60,7 @@ export const signup = (email, password) => {
 export const login = (email, password) => {
   getData();
   return async dispatch => {
+    try {
     const response = await fetch(
       'https://api.funplugz.com/api/login',
       {
@@ -72,13 +73,13 @@ export const login = (email, password) => {
           password: password,
         })
       }
-    );
-
-    console.log(JSON.stringify(response))
-    // console.log("POST RESPONSE: "+JSON.stringify(response));
-
-    if (response.status !== 200) {
-      const errorResData = await response.json();
+    )
+    .then(response => response.json())
+    .then((data) => {
+      console.log(data.user.profile);
+      
+    if (data.status !== 200) {
+      const errorResData = data;
       const errorId = errorResData.error.message;
       let message = 'Something went wrong!';
       if (errorId === 'EMAIL_NOT_FOUND') {
@@ -89,21 +90,108 @@ export const login = (email, password) => {
       throw new Error(message);
     }
 
-    const resData = await response.json();
-    console.log(JSON.stringify(resData));
-    dispatch(
-      authenticate(
-        // resData.localId,
-        resData.access_token,
-        // resData.expires_at
-        // parseInt(resData.expiresIn) * 1000
-      )
-    );
+    var resData = data 
+
+    // dispatch({
+    //   type: CREATE_PRODUCT,
+    //   productData: {
+    //     id: resData.name,
+    //     title,
+    //     description,
+    //     imageUrl,
+    //     price,
+    //     ownerId: userId
+    //   }
+    // });
+
+    saveDataToStorage(resData.access_token);
+
+
+    dispatch({
+       type:AUTHENTICATE,
+       token: resData.access_token,
+       id: resData.user.profile.id,
+       user_id: resData.user.profile.user_id,
+       firstname: resData.user.profile.firstname,
+       middlename: resData.user.profile.middlename,
+       lastname: resData.user.profile.lastname,
+       workplace: resData.user.profile.workplace,
+       current_city: resData.user.profile.current_city,
+       hometown: resData.user.profile.hometown,
+       home_address: resData.user.profile.home_address,
+       work_address: resData.user.profile.work_address,
+       gender: resData.user.profile.gender,
+       relationship: resData.user.profile.relationship,
+       educational_backgroud: resData.user.profile.educational_backgroud,
+       details: resData.user.profile.details,
+       hubbies: resData.user.profile.hubbies,
+       profile_pics: resData.user.profile.profile_pics,
+       mobiles: resData.user.user.phone,
+       email: resData.user.user.email
+    });
     // const expirationDate = new Date(
     //   new Date().getTime() + parseInt(resData.expiresIn) * 1000
     // );
     // saveDataToStorage(resData.idToken, resData.localId, expirationDate);
-    saveDataToStorage(resData.access_token);
+    });
+
+
+  
+
+
+    // console.log("POST RESPONSE: "+JSON.stringify(response));
+    // console.log(response.status);
+    // console.log(response.access_token);
+    // console.log(response.user.user);
+
+    // // console.log(response.user);
+    // // console.log(response['user']);
+    // const { access_token,  user : { user:{id, firstname}}, status } = response;
+    // console.log(status)
+    // console.log(access_token)
+    // console.log(firstname)
+    // console.log(id)
+
+
+
+
+    // const resData = await response.json();
+    // const res = await response.json();
+    // console.log(res);
+    // const resData = await response.user.json();
+    // console.log(resData);
+
+    // dispatch(
+    //   authenticate(
+    //     res.access_token,
+    //     // resData.user.id,
+    //     // resData.user.user_id,
+    //     // resData.user.firstname,
+    //     // resData.user.middlename,
+    //     // resData.user.lastname,
+    //     // resData.user.workplace,
+    //     // resData.user.current_city,
+    //     // resData.user.hometown,
+    //     // resData.user.home_address,
+    //     // resData.user.work_address,
+    //     // resData.user.gender,
+    //     // resData.user.relationship,
+    //     // resData.user.educational_backgroud,
+    //     // resData.user.details,
+    //     // resData.user.hubbies,
+    //     // resData.user.mobiles,
+    //     // resData.expires_at
+    //     // parseInt(resData.expiresIn) * 1000
+    //   )
+    // );
+    // const expirationDate = new Date(
+    //   new Date().getTime() + parseInt(resData.expiresIn) * 1000
+    // );
+    // saveDataToStorage(resData.idToken, resData.localId, expirationDate);
+    // saveDataToStorage(resData.access_token);
+  } catch (err) {
+    throw err;
+  }
 
   };
 };

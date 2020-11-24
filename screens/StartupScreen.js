@@ -32,7 +32,6 @@ const StartupScreen = props => {
       
       else if(onBoardData){
       console.log('data');
-        
       const userData = await AsyncStorage.getItem('Data');
       // console.log('data');
       console.log('chk', JSON.stringify(userData))
@@ -43,9 +42,11 @@ const StartupScreen = props => {
       }
       
       console.log('here');
+      props.navigation.navigate('Auth');
 
-      props.navigation.navigate('Shop');
-      dispatch(authActions.authenticate(userData));
+
+      // props.navigation.navigate('Shop');
+      // dispatch(authActions.authenticate(userData));
 
       }
   
