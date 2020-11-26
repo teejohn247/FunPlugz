@@ -15,7 +15,7 @@ const { width } = Dimensions.get('screen');
 const { height } = Dimensions.get('screen');
 
 
-const HomeScreen = navData => {
+const HomeScreen = props => {
 
   const userProfile = useSelector(state => state.profile);
   const vendors = useSelector(state => state.vendors.data);
@@ -39,7 +39,7 @@ const HomeScreen = navData => {
               title="Menu"
               iconName="ios-menu"
               onPress={() => {
-                navData.navigation.toggleDrawer();
+                props.navigation.toggleDrawer();
               }}
               color="blue"
             />
@@ -138,15 +138,17 @@ const HomeScreen = navData => {
                 title={itemData.item.business_name}
                 address={null}
                 onSelect={() => {
-                  props.navigation.navigate('PlaceDetail', {
+                  console.log('it',itemData)
+                  props.navigation.navigate('Map', {
                     placeTitle: itemData.item.business_name,
-                    placeId: itemData.item.id
+                    placeId: itemData.item.id,
+                    longitude: itemData.item.longitude,
+                    latitude: itemData.item.latitude
                   });
                 }}
               />
             )}
             numColumns={2}
-
           />
         </View>
 
