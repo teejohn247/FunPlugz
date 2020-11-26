@@ -28,6 +28,11 @@ import * as authActions from '../store/actions/auth';
 import OnBoardingScreen from '../screens/onBoarding/OnBoarding';
 import ImageHeader from '../components/ImageHeader';
 
+import PlacesListScreen from '../screens/shop/PlacesListScreen';
+import PlaceDetailScreen from '../screens/shop/PlaceDetailScreen';
+import NewPlaceScreen from '../screens/shop/NewPlaceScreen';
+import MapScreen from '../screens/shop/MapScreen';
+
 
 const defaultNavOptions = {
 
@@ -56,6 +61,25 @@ const defaultNavOptions = {
 // const user = () =>{
 
 // }
+
+
+
+const PlacesNavigator = createStackNavigator(
+  {
+    Places: PlacesListScreen,
+    PlaceDetail: PlaceDetailScreen,
+    NewPlace: NewPlaceScreen,
+    Map: MapScreen
+  },
+  // {
+  //   defaultNavigationOptions: {
+  //     headerStyle: {
+  //       backgroundColor: Platform.OS === 'android' ? Colors.primary : ''
+  //     },
+  //     headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary
+  //   }
+  // }
+);
 
 
 
@@ -353,6 +377,7 @@ const ShopNavigator = createDrawerNavigator(
     Settings: SettingsNavigator,
     Share: ShareNavigator,
     Feedback: FeedbackNavigator,
+    Places:PlacesNavigator
 
   },
   {
