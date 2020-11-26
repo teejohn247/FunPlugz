@@ -18,18 +18,21 @@ const styles = StyleSheet.create({
   placeItem: {
     borderBottomColor: '#ccc',
     borderBottomWidth: 1,
-    paddingVertical: 15,
+    paddingVertical: 5,
+    marginBottom:5,
     paddingHorizontal: 30,
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    elevation: 2
+
   },
   image: {
-    width: 70,
-    height: 70,
+    width: 50,
+    height: 50,
     borderRadius: 35,
     backgroundColor: '#ccc',
     borderColor: Colors.primary,
-    borderWidth: 1
+    borderWidth: 1,
   },
   infoContainer: {
     marginLeft: 25,

@@ -59,9 +59,6 @@ export const viewGame = () => {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
               },
-            //   body: JSON.stringify({
-            //     // id: id,
-            //   })
             }
           )
             .then(response => response.json())

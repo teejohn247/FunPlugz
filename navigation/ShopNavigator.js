@@ -377,7 +377,8 @@ const ShopNavigator = createDrawerNavigator(
     Settings: SettingsNavigator,
     Share: ShareNavigator,
     Feedback: FeedbackNavigator,
-    Places:PlacesNavigator
+    Places:PlacesNavigator,
+
 
   },
   {

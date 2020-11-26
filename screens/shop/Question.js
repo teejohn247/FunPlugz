@@ -23,8 +23,7 @@ const QuestionScreen = props => {
 const { width } = Dimensions.get('screen');
 const { height } = Dimensions.get('screen');
 
-    
-//   const [isLoading, setIsLoading] = useState(true);
+
 
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -34,28 +33,8 @@ const { height } = Dimensions.get('screen');
   const [selectedColor, setSelectedColor] = useState('');
   const [textColor, setTextColor] = useState('');
 
-//   const [answer, setAwswer] = useState('false');
-
-
-
-
-//   const dispatch = useDispatch();
-//   const questionId = props.navigation.getParam('Id');
-//   const questionTitle = props.navigation.getParam('Title');
-
-    // useEffect(() => {
-    //     console.log('here2');
-    //     dispatch(gameActions.selectGame(questionId))
-    //     .then(() => {
-    //     console.log('hello2');
-    //     setIsLoading(false);
-    //     });
-    // }, []);
 
     const question = useSelector(state => state.game.question);
-    // if(question){
-    //     setIsLoading(false);
-    // }
     console.log(currentQuestion);
     console.log(question.length);
 

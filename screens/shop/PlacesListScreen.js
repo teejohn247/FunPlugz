@@ -2,36 +2,50 @@ import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Platform, FlatList } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useSelector, useDispatch } from 'react-redux';
-
-import HeaderButton from '../components/HeaderButton';
-import PlaceItem from '../components/PlaceItem';
-import * as placesActions from '../store/places-actions';
+import HeaderButton from '../../components/HeaderButton';
+import PlaceItem from '../../components/PlaceItem';
+import Grid from '../../components/Grids';
+import * as vendorActions from '../../store/actions/vendors';
 
 const PlacesListScreen = props => {
-  const places = useSelector(state => state.places.places);
+  const vendors = useSelector(state => state.vendors.data);
+  console.log(vendors);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(placesActions.loadPlaces());
+    dispatch(vendorActions.vendors());
   }, [dispatch]);
 
   return (
     <FlatList
-      data={places}
+      data={vendors}
       keyExtractor={item => item.id}
       renderItem={itemData => (
-        <PlaceItem
-          image={itemData.item.imageUri}
-          title={itemData.item.title}
+        <Grid
+          // image={itemData.item.imageUri}
+          title={itemData.item.business_name}
           address={null}
           onSelect={() => {
             props.navigation.navigate('PlaceDetail', {
-              placeTitle: itemData.item.title,
+              placeTitle: itemData.item.business_name,
               placeId: itemData.item.id
             });
           }}
+        // <PlaceItem
+        //   // image={itemData.item.imageUri}
+        //   title={itemData.item.business_name}
+        //   address={null}
+        //   onSelect={() => {
+        //     props.navigation.navigate('PlaceDetail', {
+        //       placeTitle: itemData.item.business_name,
+        //       placeId: itemData.item.id
+        //     });
+        //   }}
         />
+
       )}
+      numColumns={2}
+
     />
   );
 };

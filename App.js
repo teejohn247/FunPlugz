@@ -8,26 +8,23 @@ import ReduxThunk from 'redux-thunk';
 import { Image, StyleSheet, Text, View } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
 import { TouchableOpacity } from "react-native-gesture-handler";
-// import productsReducer from './store/reducers/products';
-// import cartReducer from './store/reducers/cart';
-// import ordersReducer from './store/reducers/orders';
 import authReducer from './store/reducers/auth';
 import questionReducer from './store/reducers/game';
 import gameReducer from './store/reducers/game';
 import NavigationContainer from './navigation/NavigationContainer';
+import vendorsReducer from "./store/reducers/vendors";
 
 
 
 const rootReducer = combineReducers({
   auth: authReducer,
   game: gameReducer,
-  question: questionReducer
+  question: questionReducer,
+  vendors: vendorsReducer
 });
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-// export default createStore(reducers, composeEnhancers(applyMiddleware(...middleware)));
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(ReduxThunk)));
 

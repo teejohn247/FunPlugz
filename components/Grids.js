@@ -67,37 +67,61 @@ const MyCarousel = props => {
       <TouchableOpacity onPress={goForward}>
         {/* <Text>go to next slide</Text> */}
       </TouchableOpacity>
-      <FlatList
+      
+      {/* <Image style={styles.image} source={{ uri: props.image }} />
+      <View style={styles.infoContainer}>
+        <Text style={styles.title}>{props.title}</Text>
+        <Text style={styles.address}>{props.address}</Text>
+      </View> */}
+
+      <TouchableOpacity onPress={props.onSelect} style={{ flexDirection: 'column', width: '100%', padding: 5, elevation: 10 }}>
+        <View>
+          <Image
+            source={{ uri: ENTRIES1[0].illustration }}
+            style={styles.image}
+          />
+          <View style={{ flexDirection: 'column', width: '100%', alignItems: 'center', justifyContent: 'center', justifyContent: 'space-between', backgroundColor: 'white', elevation: 10, paddingVertical: 20, borderBottomLeftRadius: 20, borderBottomRightRadius: 20 }}>
+            <View >
+              <Text numberOfLines={1} style={{ textAlign: 'left', padding: 0, alignItems: 'center' }}>
+                {props.title}
+              </Text>
+            </View>
+            <View>
+
+            </View>
+          </View>
+
+        </View>
+      </TouchableOpacity>
+
+
+      {/* <FlatList
         data={ENTRIES1}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
-            <View style={{flexDirection: 'column', width:'50%', padding:5, elevation:10}}>
-            <Image
-              source={{uri: item.illustration}}
-              style={styles.image}
-              
-            />
-             
-            
-             <View style={{flexDirection:'column', width:'100%', alignItems:'center', justifyContent:'center', justifyContent:'space-between', backgroundColor:'white', elevation:10, paddingVertical:20, borderBottomLeftRadius:20, borderBottomRightRadius:20}}>
-            <View >
-            <Text numberOfLines={1} style={{textAlign:'left', padding:0, alignItems:'center'}}>
-              {item.title}
-            </Text>
-            </View>
-            <View>
-            {/* <Rating
-              type='star'
-              ratingCount={5}
-              imageSize={12}
-            /> */}
+      <TouchableOpacity onPress={props.onSelect} style={{flexDirection: 'column', width:'50%', padding:5, elevation:10}}>
+          <View >
+              <Image
+                source={{uri: item.illustration}}
+                style={styles.image}
+          />
+          <View style={{flexDirection:'column', width:'100%', alignItems:'center', justifyContent:'center', justifyContent:'space-between', backgroundColor:'white', elevation:10, paddingVertical:20, borderBottomLeftRadius:20, borderBottomRightRadius:20}}>
+          <View >
+          <Text numberOfLines={1} style={{textAlign:'left', padding:0, alignItems:'center'}}>
+          {props.title}
+          </Text>
+          </View>
+          <View>
+          
             </View>
             </View>
     
-    </View>
+          </View>
+    </TouchableOpacity>
+
         )}
         numColumns={2}
-      />
+      /> */}
     </View>
   );
 };
@@ -125,8 +149,8 @@ const styles = StyleSheet.create({
 
     width:'100%',
     height:100,
-    borderTopRightRadius:2,
-    borderTopLeftRadius:2,
+    borderTopRightRadius:20,
+    borderTopLeftRadius:20,
     // marginBottom:20
     // padding:10,
     // margin:5
