@@ -4,7 +4,9 @@ import { View, Image, StyleSheet } from 'react-native';
 import ENV from '../env';
 
 const MapPreview = props => {
+  console.log(props)
   let imagePreviewUrl;
+
 
   if (props.location) {
     imagePreviewUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${

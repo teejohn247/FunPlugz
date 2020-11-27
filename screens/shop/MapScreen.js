@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Button, Dimensions } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import MapView, { Marker } from 'react-native-maps';
+
+const {width: screenWidth} = Dimensions.get('window');
 
 const MapScreen = (props) => {
   console.log('latt1',props)
@@ -24,9 +27,8 @@ const MapScreen = (props) => {
     longitude: Number(data.longitude),
   };
 
-
-
   return (
+    <ScrollView>
     <MapView
       style={styles.map}
       region={mapRegion}
@@ -34,12 +36,29 @@ const MapScreen = (props) => {
      
       <Marker coordinate={marker} />
     </MapView>
+    <View>
+    <Button
+    title="Get User Location"
+    color={'green'}
+    onPress={() => {
+      // props.navigation.navigate('EditLocation');
+      props.navigation.navigate('EditLocation', {
+        latitude: Number(data.latitude),
+        longitude: Number(data.longitude),
+      });
+      
+    }}
+  />
+  </View>
+  </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   map: {
-    flex: 1
+    flex: 1,
+    height: screenWidth - 100,
+    width:screenWidth
   }
 });
 

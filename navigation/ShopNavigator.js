@@ -32,6 +32,7 @@ import PlacesListScreen from '../screens/shop/PlacesListScreen';
 import PlaceDetailScreen from '../screens/shop/PlaceDetailScreen';
 import NewPlaceScreen from '../screens/shop/NewPlaceScreen';
 import MapScreen from '../screens/shop/MapScreen';
+import EditLocationScreen from '../screens/shop/EditLocation';
 
 
 const defaultNavOptions = {
@@ -69,6 +70,7 @@ const PlacesNavigator = createStackNavigator(
     Places: PlacesListScreen,
     PlaceDetail: PlaceDetailScreen,
     NewPlace: NewPlaceScreen,
+    EditLocation: EditLocationScreen,
     Map: MapScreen
   },
   // {

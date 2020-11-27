@@ -11,11 +11,16 @@ import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 
 import Colors from '../constants/Colors';
-import MapPreview from './MapPreview';
+import MapPrev from './MapView';
 
 const LocationPicker = props => {
   const [isFetching, setIsFetching] = useState(false);
-  const [pickedLocation, setPickedLocation] = useState();
+  console.log('hello', props.Location);
+  const [pickedLocation, setPickedLocation] = useState({
+    lat: props.Location.latitude,
+    lng: props.Location.longitude
+  });
+
 
   const verifyPermissions = async () => {
     const result = await Permissions.askAsync(Permissions.LOCATION);
@@ -39,8 +44,9 @@ const LocationPicker = props => {
     try {
       setIsFetching(true);
       const location = await Location.getCurrentPositionAsync({
-        timeout: 5000
+        timeout: 20000
       });
+      console.log(location)
       setPickedLocation({
         lat: location.coords.latitude,
         lng: location.coords.longitude
@@ -55,15 +61,24 @@ const LocationPicker = props => {
     setIsFetching(false);
   };
 
+  console.log('picked', pickedLocation)
+
   return (
     <View style={styles.locationPicker}>
-      <MapPreview style={styles.mapPreview} location={pickedLocation}>
+      {/* <MapPreview style={styles.mapPreview} location={pickedLocation}>
         {isFetching ? (
           <ActivityIndicator size="large" color={Colors.primary} />
         ) : (
           <Text>No location chosen yet!</Text>
         )}
-      </MapPreview>
+      </MapPreview> */}
+      <MapPrev style={styles.mapPreview} location={pickedLocation}>
+        {isFetching ? (
+          <ActivityIndicator size="large" color={Colors.primary} />
+        ) : (
+          <Text>No location chosen yet!</Text>
+        )}
+      </MapPrev>
       <Button
         title="Get User Location"
         color={Colors.primary}
@@ -78,6 +93,7 @@ const styles = StyleSheet.create({
     marginBottom: 15
   },
   mapPreview: {
+    flex:1,
     marginBottom: 10,
     width: '100%',
     height: 150,
