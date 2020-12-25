@@ -48,6 +48,7 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
+  Button,
   Platform
 } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
@@ -117,10 +118,31 @@ const MapPrev = props => {
         <Marker title="Picked Location" coordinate={markerCoordinates} />
       )}
     </MapView>
+
       ) : (
         props.children
       )}
+     
+      
     </View>
+
+
+
+// <View style={{ flex: 1 }}>
+//     <MapView
+//       style={{ flex: 1 }}
+//     />
+//     <View
+//         style={{
+//             position: 'absolute',//use absolute position to show button on top of the map
+//             top: '50%', //for center align
+//             alignSelf: 'flex-end' //for align to right
+//         }}
+//     >
+//         <Button />
+//     </View>
+// </View>
+    
     // <MapView
     //   style={styles.map}
     //   region={mapRegion}

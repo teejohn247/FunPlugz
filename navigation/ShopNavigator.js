@@ -13,6 +13,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 
 import HomeScreen from '../screens/shop/HomeScreen';
+import HeadScreen from '../screens/shop/HeadScreen';
 import ProductDetailScreen from '../screens/shop/ProductDetailScreen';
 import CartScreen from '../screens/shop/CartScreen';
 import OrdersScreen from '../screens/shop/OrdersScreen';
@@ -33,6 +34,8 @@ import PlaceDetailScreen from '../screens/shop/PlaceDetailScreen';
 import NewPlaceScreen from '../screens/shop/NewPlaceScreen';
 import MapScreen from '../screens/shop/MapScreen';
 import EditLocationScreen from '../screens/shop/EditLocation';
+import EditProfileScreen from '../screens/shop/EditProfileScreen';
+
 
 
 const defaultNavOptions = {
@@ -67,11 +70,13 @@ const defaultNavOptions = {
 
 const PlacesNavigator = createStackNavigator(
   {
-    Places: PlacesListScreen,
+    // Places: PlacesListScreen,
+    Head: HeadScreen,
     PlaceDetail: PlaceDetailScreen,
     NewPlace: NewPlaceScreen,
     EditLocation: EditLocationScreen,
-    Map: MapScreen
+    Map: MapScreen,
+    EditProfile: EditProfileScreen
   },
   // {
   //   defaultNavigationOptions: {
@@ -164,17 +169,26 @@ const tabScreenConfig = {
     navigationOptions: {
       tabBarIcon: tabInfo => {
         return (
-          <Ionicons name="ios-home" size={25} color={'orange'} />
+          <Ionicons name="ios-home" size={25} color={'white'} />
         );
       },
       tabBarColor: Colors.primaryColor
     }
   },
   Favorites: {
-    screen: CategoriesNavigator,
+    screen: ProductsNavigator,
     navigationOptions: {
       tabBarIcon: tabInfo => {
         return <Ionicons name="ios-star" size={25} color={tabInfo.tintColor} />;
+      },
+      tabBarColor: Colors.accentColor
+    }
+  },
+  Game: {
+    screen: CategoriesNavigator,
+    navigationOptions: {
+      tabBarIcon: tabInfo => {
+        return <Ionicons name="logo-xbox" size={25} color={tabInfo.tintColor} />;
       },
       tabBarColor: Colors.accentColor
     }
@@ -187,9 +201,9 @@ const HomeTabNavigator =
         activeTintColor: 'blue',
         shifting: true,
         barStyle: {
-          backgroundColor: 'white',
+          backgroundColor: '#1E68EF',
           color:'red',
-          elevation: 10
+          elevation: 6
         }
       })
     : createBottomTabNavigator(tabScreenConfig, {
@@ -394,7 +408,7 @@ const ShopNavigator = createDrawerNavigator(
       contentComponent: CustomDrawerContentComponent,
       contentOptions: {
         activeTintColor: 'white',
-        activeBackgroundColor : 'orange',
+        activeBackgroundColor : '#3900E6',
         inactiveTintColor : '#383838',
         
         itemsContainerStyle: {
@@ -468,6 +482,7 @@ const AuthNavigator = createStackNavigator(
 );
 
 const MainNavigator = createSwitchNavigator({
+  // Head: HeadScreen,
   Startup: StartupScreen,
   OnBoarding:OnBoardingNavigator,
   Auth: AuthNavigator,

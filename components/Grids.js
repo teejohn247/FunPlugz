@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { Rating, AirbnbRating } from 'react-native-ratings';
 
 
@@ -47,6 +48,8 @@ const ENTRIES1 = [
   
 ];
 const {width: screenWidth} = Dimensions.get('window');
+// const [loading, setLoading] = useState(false);
+
 
 const MyCarousel = props => {
   const [entries, setEntries] = useState([]);
@@ -74,20 +77,53 @@ const MyCarousel = props => {
         <Text style={styles.address}>{props.address}</Text>
       </View> */}
 
-      <TouchableOpacity onPress={props.onSelect} style={{ flexDirection: 'column', width: '100%', padding: 5, elevation: 10 }}>
-        <View>
-          <Image
+      {}
+
+      <TouchableOpacity onPress={props.onSelect} style={{ flexDirection: 'column', width: '95%', padding: 5,backgroundColor:'white', padding:10, margin:10,
+        elevation:4, justifyContent:'center' }}>
+        <View style={{flexDirection:'row', width:'100%'}}>
+          {/* <Image
             source={{ uri: ENTRIES1[0].illustration }}
             style={styles.image}
-          />
-          <View style={{ flexDirection: 'column', width: '100%', alignItems: 'center', justifyContent: 'center', justifyContent: 'space-between', backgroundColor: 'white', elevation: 10, paddingVertical: 20, borderBottomLeftRadius: 20, borderBottomRightRadius: 20 }}>
-            <View >
-              <Text numberOfLines={1} style={{ textAlign: 'left', padding: 0, alignItems: 'center' }}>
+          /> */}
+          {/* <View style={{ flexDirection: 'row', width: '60%', justifyContent:'space-between', alignItems:'space-between', backgroundColor: 'white', paddingVertical: 20}}>
+            <View style={{flexDirection: 'row', justifyContent:'space-between', alignItems:'space-between'}}>
+              <Text>
                 {props.title}
+              </Text>
+              <Text>
+                2.4KM
               </Text>
             </View>
             <View>
 
+            </View>
+          </View> */}
+          <View style={{flexDirection: 'row',  width:'100%', }}>
+          <Image style={{ width:110, height:120,  borderRadius: 15, }} source={{ uri: ENTRIES1[0].illustration }}
+          />
+          <View style={{flexDirection: 'column', }}>
+          <Text style={{fontFamily: 'montserrat', fontSize:18, width:'70%', marginLeft:20}}>{props.title}</Text>
+          <View style={{flexDirection: 'row', paddingTop:5}}>
+          <Ionicons style={{ marginLeft: 20}} name={'md-navigate'}size={23}
+            color="gray"
+            /> 
+            <Text style={{fontFamily: 'montserrat-regular', marginLeft:5, marginTop: 3, width:'60%', flexWrap: 'wrap'}}>15, Toyin Street, Opebi, Ikeja, Lagos</Text>
+            </View>
+            <View style={{flexDirection: 'row', paddingTop:5, marginLeft: 30}}>
+          {/* <Ionicons style={{ marginLeft: 20}} name={'md-time'}size={23}
+            color="gray"
+            />  */}
+          <Rating
+          type='star'
+          ratingCount={5}
+          imageSize={20}
+          ratingColor='#3498db'
+          selectedColor='red'
+          ratingBackgroundColor='#c8c7c8'
+          tintColor= 'white'
+          />
+            </View>
             </View>
           </View>
 
@@ -131,6 +167,7 @@ export default MyCarousel;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'row',
   },
   item: {
     width: screenWidth - 60,
@@ -147,10 +184,11 @@ const styles = StyleSheet.create({
     // flex:1,
     resizeMode: 'cover',
 
-    width:'100%',
-    height:100,
-    borderTopRightRadius:20,
-    borderTopLeftRadius:20,
+    width:'40%',
+    height:120,
+    borderRadius:20
+    // borderTopRightRadius:20,
+    // borderTopLeftRadius:20,
     // marginBottom:20
     // padding:10,
     // margin:5

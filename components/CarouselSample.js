@@ -14,28 +14,28 @@ const ENTRIES1 = [
   {
     title: 'LEKKI',
     subtitle: 'Lorem ipsum dolor sit amet',
-    illustration: 'https://images.flyinstatic.com/preprodhotels/ebtranet-images/77801/01.jpg',
+    illustration: 'https://www.brabbu.com/en/inspiration-and-ideas/wp-content/uploads/2016/03/10-Beautiful-Living-Room-Ideas-By-Interior-Designers-kelly-hoppen1.jpg',
   },
   {
     title: 'IKEJA',
     subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-    illustration: 'https://images.flyinstatic.com/preprodhotels/ebtranet-images/77801/01.jpg',
+    illustration: 'https://www.asianpaints.com/content/dam/asian_paints/services/beautiful-homes-service/beautiful-homes-testimonials-sudarshan-tandon-asian-paints.jpg',
   },
   {
     title: 'IKORODU',
     subtitle: 'Lorem ipsum dolor sit amet',
-    illustration: 'https://i1.wp.com/blog.wakanow.com/wp-content/uploads/2019/02/manor-house-2359884_1280.jpg?resize=740,480',
+    illustration: 'https://jumanji.livspace-cdn.com/magazine/wp-content/uploads/2018/10/16191124/bright-and-beautiful-living-room-750x500.jpg',
   },
   {
     title: 'VICTORIA ISLAND',
     subtitle: 'Lorem ipsum dolor sit amet et nuncat ',
-    illustration: 'https://netstorage-legit.akamaized.net/images/vllkyt7m6g2vne4su.jpg?imwidth=900',
+    illustration: 'https://img.freepik.com/free-photo/beautiful-interior-design-with-empty-check-counter_9083-1240.jpg?size=626&ext=jpg',
 
   },
   {
     title: 'AJAH',
     subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-    illustration: 'https://ocdn.eu/images/pulscms/YzA7MDA_/49b5defbe83c83458a960759c942e7db.jpeg',
+    illustration: 'https://jumanji.livspace-cdn.com/magazine/wp-content/uploads/2019/08/17221214/cleo-county-living-cum-dining-room.jpg',
   },
   
 ];
@@ -61,11 +61,12 @@ const MyCarousel = props => {
           containerStyle={styles.imageContainer}
           style={styles.image}
           parallaxFactor={0.4}
+          
           {...parallaxProps}
         />
-         <View style={{flexDirection:'row', justifyContent:'space-between', backgroundColor:'white', elevation:10, padding:20, borderBottomLeftRadius:20, borderBottomRightRadius:20}}>
+         <View style={{flexDirection:'column', color: 'white', backgroundColor:'black', opacity:0.7, justifyContent:'center', position:'relative', top:-screenWidth +150, alignItems: 'center', padding:20,}}>
         <View >
-        <Text numberOfLines={2}>
+        <Text numberOfLines={2} style={{color:'white', fontFamily: 'montserrat', fontSize: 22, opacity:1, zIndex:99}}>
           {item.title}
         </Text>
         </View>
@@ -74,6 +75,13 @@ const MyCarousel = props => {
           type='star'
           ratingCount={5}
           imageSize={20}
+          // ratingBackgroundColor='black'
+          ratingColor='blue'
+          selectedColor="blue"
+          // tintColor= 'white'
+
+          // tintColor='transparent'
+       
         />
         </View>
 
@@ -112,16 +120,21 @@ const styles = StyleSheet.create({
   },
   item: {
     width: screenWidth - 60,
-    height: screenWidth - 60,
+    height: screenWidth,
+    // backgroundColor: 'black',
+    borderRadius: 20,
+
   },
   imageContainer: {
     flex: 1,
     marginBottom: Platform.select({ios: 0, android: 1}), // Prevent a random Android rendering issue
-    backgroundColor: 'white',
+    backgroundColor: 'black',
+    opacity: 0.9,
     borderRadius: 8,
   },
   image: {
     ...StyleSheet.absoluteFillObject,
     resizeMode: 'cover',
+    opacity: 0.4
   },
 });

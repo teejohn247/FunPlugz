@@ -1,4 +1,5 @@
-import { VENDORS } from '../actions/vendors';
+import { VENDORS, EDIT_VENDOR , SEARCH } from '../actions/vendors';
+
 
 
 const initialState = {
@@ -12,6 +13,16 @@ export default (state = initialState, action) => {
             ...state,
             data: action.data
         }
+        case EDIT_VENDOR:
+          return {
+              ...state,
+              data: action.data
+          }
+          // case SEARCH:
+          // return {
+          //     ...state,
+          //     data: action.data
+          // }
     }
 
   return state;

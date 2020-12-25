@@ -11,20 +11,24 @@ import Colors from '../constants/Colors';
 import * as authActions from '../store/actions/auth';
 // import onBoarding from '../screens/onBoarding/OnBoarding'
 
+
+
+
 const StartupScreen = props => {
   const dispatch = useDispatch();
 
   const [isFirstLaunch, setIsFirstLaunch] = useState(null);
 
   useEffect(() => {
-    const tryLogin = async () => {
+
+    // const tryLogin = async () => {
       // await AsyncStorage.removeItem('alreadyLaunched');
       // var isLarger = new Date("2-11-2012 13:40:00") > new Date("01-11-2012 10:40:00");
-      const onBoardData = await AsyncStorage.getItem('alreadyLaunched');
+      const onBoardData =  AsyncStorage.getItem('alreadyLaunched');
       console.log('confirm',onBoardData)
       if (onBoardData == null) {
         console.log('null')
-        await AsyncStorage.setItem('alreadyLaunched', 'true'); 
+        AsyncStorage.setItem('alreadyLaunched', 'true'); 
         setIsFirstLaunch(true);
         // props.navigation.navigate('OnBoarding');
         props.navigation.navigate('Auth');
@@ -32,30 +36,28 @@ const StartupScreen = props => {
       
       else if(onBoardData){
       console.log('data');
-      const userData = await AsyncStorage.getItem('Data');
+      const userData = AsyncStorage.getItem('Data');
       // console.log('data');
       console.log('chk', JSON.stringify(userData))
       if (!userData) {
         console.log(!userData);
         props.navigation.navigate('Auth');
         return;
+      }else{
+        props.navigation.navigate('Shop');
+        dispatch(authActions.authenticate(userData));
       }
       
-      console.log('here');
-      props.navigation.navigate('Auth');
+      // console.log('here');
+      // props.navigation.navigate('Auth');
 
 
-      // props.navigation.navigate('Shop');
-      // dispatch(authActions.authenticate(userData));
+   
 
-      }
+      // }
   
     };
 
-
-    tryLogin();
-
-    
   }, []);
 
   return (

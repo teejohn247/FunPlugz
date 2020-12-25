@@ -229,7 +229,7 @@ const setLogoutTimer = expirationTime => {
 const saveDataToStorage = async (token) => {
   console.log(token);
   try {
-    await AsyncStorage.setItem('Data', JSON.stringify(token))
+    await AsyncStorage.setItem('Data', token)
     console.log('Data successfully saved')
   } catch (e) {
     alert('Failed to save the data to the storage')

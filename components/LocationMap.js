@@ -45,7 +45,9 @@ const LocationMap = props => {
 
 const styles = StyleSheet.create({
   map: {
-    flex: 1
+    flex: 1,
+    // width: '100%' | screenWidth,
+    // height: 150 | screenWidth + 100,
   }
 });
 

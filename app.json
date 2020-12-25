@@ -20,7 +20,12 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.funplugz.funplugz"
+      "package": "com.funplugz.funplugz",
+      "config":{
+        "googleMaps":{
+          "apiKey": "AIzaSyAhZfkvwkS8NF7Cbp0yeW_duTIfG-9v7UE"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

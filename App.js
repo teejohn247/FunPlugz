@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useRef } from "react";
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
@@ -13,6 +13,9 @@ import questionReducer from './store/reducers/game';
 import gameReducer from './store/reducers/game';
 import NavigationContainer from './navigation/NavigationContainer';
 import vendorsReducer from "./store/reducers/vendors";
+import searchReducer from "./store/reducers/search";
+
+
 
 
 
@@ -20,7 +23,8 @@ const rootReducer = combineReducers({
   auth: authReducer,
   game: gameReducer,
   question: questionReducer,
-  vendors: vendorsReducer
+  vendors: vendorsReducer,
+  search: searchReducer
 });
 
 

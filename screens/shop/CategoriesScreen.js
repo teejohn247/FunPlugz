@@ -57,9 +57,9 @@ const CategoriesScreen = props => {
     
   //   return (
   //     <View>
-  //     {isLoading ? (
-  //       <ActivityIndicator size="small" color='red' />
-  //     ) : (
+      // {isLoading ? (
+      //   <ActivityIndicator size="small" color='red' />
+      // ) : (
           
   //     //   <CategoryGridTile
   //     //   title={itemData.item.name}
