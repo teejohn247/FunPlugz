@@ -20,9 +20,14 @@ import OrdersScreen from '../screens/shop/OrdersScreen';
 import CategoriesScreen from '../screens/shop/CategoriesScreen';
 import QuestionScreen from '../screens/shop/Question';
 import ScoreScreen from '../screens/shop/Score';
+import SignUpScreen from '../screens/shop/Register';
+
+import LoginScreen from '../screens/shop/Login';
+
+
 import UserProductsScreen from '../screens/user/UserProductsScreen';
 import EditProductScreen from '../screens/user/EditProductScreen';
-import AuthScreen from '../screens/user/AuthScreen';
+import AuthScreen from '../screens/user/Auth';
 import StartupScreen from '../screens/StartupScreen';
 import Colors from '../constants/Colors';
 import * as authActions from '../store/actions/auth';
@@ -35,6 +40,7 @@ import NewPlaceScreen from '../screens/shop/NewPlaceScreen';
 import MapScreen from '../screens/shop/MapScreen';
 import EditLocationScreen from '../screens/shop/EditLocation';
 import EditProfileScreen from '../screens/shop/EditProfileScreen';
+import SignUp from '../screens/shop/Register';
 
 
 
@@ -474,7 +480,9 @@ const OnBoardingNavigator = createStackNavigator(
 
 const AuthNavigator = createStackNavigator(
   {
-    Auth: AuthScreen
+    Auth: AuthScreen,
+    Login: LoginScreen,
+    SignUp:SignUpScreen
   },
   {
     // defaultNavigationOptions: defaultNavOptions
