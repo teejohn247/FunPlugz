@@ -131,8 +131,7 @@ const SignUpForm = () => {
         borderColor: 'white', borderRadius:30, color:'#999999' }}
         onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
         <Picker.Item label="Select role" value="" />
-        <Picker.Item label="User" value="user" />
-        <Picker.Item label="Vendor" value="Vendor" />
+        <Picker.Item label="Vendor" value="vendor" />
       </Picker>
       </View>
         <TouchableOpacity style={styles.button} onPress={handleSubmit}>

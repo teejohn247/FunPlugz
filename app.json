@@ -21,14 +21,15 @@
     },
     "android": {
       "package": "com.funplugz.funplugz",
-      "config":{
-        "googleMaps":{
+      "config": {
+        "googleMaps": {
           "apiKey": "AIzaSyAhZfkvwkS8NF7Cbp0yeW_duTIfG-9v7UE"
         }
       }
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": ""
   }
 }
